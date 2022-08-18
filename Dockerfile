@@ -7,7 +7,7 @@ WORKDIR /home/app
 COPY package*.json ./
 RUN apt-get update
 RUN apt-get -y install curl gnupg
-RUN curl -sL https://deb.nodesource.com/setup_12.x  | bash -
+RUN curl -sL https://deb.nodesource.com/setup_12  | bash -
 RUN sudo apt install -y \ 
     gconf-service \
     libgbm-dev \
