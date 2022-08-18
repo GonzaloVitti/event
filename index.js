@@ -13,33 +13,33 @@ const fs = require('fs');
 // if (fs.existsSync(SESSION_FILE_PATH)) {
 //   sessionData = require(SESSION_FILE_PATH);
 // }
-global.client = new Client();
+// global.client = new Client();
 
-global.client = new Client({
-  qrTimeoutMs:0,
-  takeoverOnConflict: true,
-  authTimeoutMs: 0,
-  restartOnAuthFail: true,
-  puppeteer: {
-      headless: true,
-      args: [
-          '--no-sandbox',
-          '--disable-setuid-sandbox',
-          '--unhandled-rejections=strict'
-  ]},
-  // authStrategy: new LegacySessionAuth({
-  //   session: sessionData // saved session object
-  // }),
-  // authStrategy: new LocalAuth(),
-  // authStrategy: new LegacySessionAuth(),
-  // session: sessionData,
+// global.client = new Client({
+//   qrTimeoutMs:0,
+//   takeoverOnConflict: true,
+//   authTimeoutMs: 0,
+//   restartOnAuthFail: true,
+//   puppeteer: {
+//       headless: true,
+//       args: [
+//           '--no-sandbox',
+//           '--disable-setuid-sandbox',
+//           '--unhandled-rejections=strict'
+//   ]},
+//   // authStrategy: new LegacySessionAuth({
+//   //   session: sessionData // saved session object
+//   // }),
+//   // authStrategy: new LocalAuth(),
+//   // authStrategy: new LegacySessionAuth(),
+//   // session: sessionData,
   
-  takeoverTimeoutMs:0
-});
+//   takeoverTimeoutMs:0
+// });
 
 // let bandera = false;
-global.authed = false;
-global.estado = "Desconectado";
+// global.authed = false;
+// global.estado = "Desconectado";
 
 // Crear el servidor de express
 const app = express();
@@ -65,56 +65,56 @@ app.use(express.json());
 //WSP
 app.use(bodyParser.urlencoded({ extended: true }));
 
-client.on('qr', qr => {
-  fs.writeFileSync('./helpers/last.qr', qr);
-});
+// client.on('qr', qr => {
+//   fs.writeFileSync('./helpers/last.qr', qr);
+// });
 
-client.on('authenticated', (session) => {
-  console.log("Autorizando");
-  // sessionData = session;
+// client.on('authenticated', (session) => {
+//   console.log("Autorizando");
+//   // sessionData = session;
   
-  // client.options.session = session;
+//   // client.options.session = session;
   
-  // fs.writeFile(SESSION_FILE_PATH, JSON.stringify(session), function (err) {
-  //     if (err) {
-  //         console.error(err);
-  //     }
-  //     authed = true;
-  // });
+//   // fs.writeFile(SESSION_FILE_PATH, JSON.stringify(session), function (err) {
+//   //     if (err) {
+//   //         console.error(err);
+//   //     }
+//   //     authed = true;
+//   // });
 
-  try {
-    console.log("qr por eliminarse")
-      fs.unlink('./helpers/last.qr')
-      console.log("asdasdsadasdasdsa"+fs.existsSync('./helpers/last.qr'))
-  } catch(err) {}
-});
+//   try {
+//     console.log("qr por eliminarse")
+//       fs.unlink('./helpers/last.qr')
+//       console.log("asdasdsadasdasdsa"+fs.existsSync('./helpers/last.qr'))
+//   } catch(err) {}
+// });
 
-client.on('auth_failure', () => {
-  console.log('Error de autenticacion vuelve a generar el QRCODE');
-  // let sessionFile = fs.readFileSync('./session.json');
-  // if(sessionFile){
-  //   fs.unlinkSync('./session.json');
-  // }
-  // sessionCfg = "";
-  // process.exit();
-});
+// client.on('auth_failure', () => {
+//   console.log('Error de autenticacion vuelve a generar el QRCODE');
+//   // let sessionFile = fs.readFileSync('./session.json');
+//   // if(sessionFile){
+//   //   fs.unlinkSync('./session.json');
+//   // }
+//   // sessionCfg = "";
+//   // process.exit();
+// });
 
-client.on('ready', async() => {
-  console.log("El cliente esta listo");
-  estado = await client.getState();
-});
+// client.on('ready', async() => {
+//   console.log("El cliente esta listo");
+//   estado = await client.getState();
+// });
 
-client.on('disconnected', ()=>{
-      console.log('Se ha desconectado');
-      // let sessionFile = fs.readFileSync('./session.json');
-      // if(sessionFile){
-      //   fs.unlinkSync('./session.json');
-      // };
-      estado="Desconectado";
-      process.exit();
-});
+// client.on('disconnected', ()=>{
+//       console.log('Se ha desconectado');
+//       // let sessionFile = fs.readFileSync('./session.json');
+//       // if(sessionFile){
+//       //   fs.unlinkSync('./session.json');
+//       // };
+//       estado="Desconectado";
+//       process.exit();
+// });
 
-client.initialize();
+// client.initialize();
 
 
 // Rutas
