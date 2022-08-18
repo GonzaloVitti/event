@@ -1,9 +1,4 @@
-FROM node
-
-WORKDIR /eventapp-backend-github
-
-COPY package*.json ./
-
+FROM ubuntu
 RUN sudo apt install -y \ 
     gconf-service \
     libgbm-dev \
@@ -44,8 +39,13 @@ RUN sudo apt install -y \
     lsb-release \
     xdg-utils \
     wget
-RUN npm install
+FROM node
 
+WORKDIR /eventapp-backend-github
+
+COPY package*.json ./
+
+RUN npm install
 
 COPY . .
 
