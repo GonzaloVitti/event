@@ -34,6 +34,7 @@
     "node-base64-to-file": "^1.0.1",
     "ora": "^6.0.1",
     "pdf-creator-node": "^2.3.4",
+    "puppeteer": "^13.2.0",
     "qrcode-terminal": "^0.12.0",
     "request": "^2.88.2",
     "shelljs": "^0.8.5",
