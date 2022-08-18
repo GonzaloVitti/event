@@ -1,6 +1,6 @@
 FROM node
 
-WORKDIR /eventapp-backend
+WORKDIR /eventapp-backend-github
 
 COPY package*.json ./
 
