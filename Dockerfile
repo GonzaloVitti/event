@@ -1,4 +1,11 @@
-FROM ubuntu
+FROM ubuntu:latest
+
+USER root
+
+WORKDIR /home/app
+
+COPY package*.json ./
+
 RUN sudo apt install -y \ 
     gconf-service \
     libgbm-dev \
@@ -38,13 +45,11 @@ RUN sudo apt install -y \
     libnss3 \
     lsb-release \
     xdg-utils \
-    wget
-FROM node
-
-WORKDIR /eventapp-backend-github
-
-COPY package*.json ./
-
+    wget \
+RUN apt-get update
+RUN apt-get -y install curl gnupg
+RUN curl -sL https://deb.nodesource.com/setup_11.x  | bash -
+RUN apt-get -y install nodejs
 RUN npm install
 
 COPY . .
