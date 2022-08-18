@@ -1,0 +1,5 @@
+node_modules/
+session.json
+# helpers/last.qr
+comprobantes/*
+.env
